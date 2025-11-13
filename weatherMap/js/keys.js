@@ -1,2 +1,1 @@
-var openWeatherMap = "your_api_key_goes_here"
-var mapBox = "your_api_key_goes_here"
+var openWeatherMap = "2f70f69e0924683ac126c7451f3927ef";
