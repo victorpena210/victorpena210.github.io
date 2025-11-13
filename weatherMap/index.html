@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <title>Weather + Mapbox demo</title>
+
+  <!-- Mapbox GL JS -->
+  <link href="https://api.mapbox.com/mapbox-gl-js/v2.15.0/mapbox-gl.css" rel="stylesheet">
+  <script src="https://api.mapbox.com/mapbox-gl-js/v2.15.0/mapbox-gl.js"></script>
+
+  <style>
+
+    html, body { margin:0; padding:0; height:100%; }
+    #map { width:100%; height: 70vh; }
+    #out { padding: 8px 12px; font-family: ui-sans-serif, system-ui; }
+    header { padding: 8px 12px; font-family: ui-sans-serif, system-ui; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Weather + Mapbox demo</h1>
+  </header>
+
+  <div id="map"></div>
+  <pre id="out"></pre>
+
+
+
+  <script>
+    // Use your PUBLIC Mapbox token; restrict it to http://localhost:3000 and your prod domain(s)
+    const MAPBOX_PUBLIC_TOKEN = 'pk.eyJ1IjoidnBlbmEiLCJhIjoiY21oeGtjbmkxMDI3NDJycTI5MDJ6MmlqcCJ9.pLSlLX6ubYU_iCkpBZLO1g';
+    mapboxgl.accessToken = MAPBOX_PUBLIC_TOKEN;
+
+    // San Antonio default center
+    const center = [-98.4868, 29.4241];
+
+    const map = new mapboxgl.Map({
+      container: 'map',
+      style: 'mapbox://styles/mapbox/streets-v12',
+      center,
+      zoom: 10
+    });
+
+    // Basic controls
+    map.addControl(new mapboxgl.NavigationControl(), 'top-right');
+    map.addControl(new mapboxgl.FullscreenControl(), 'top-right');
+    map.addControl(new mapboxgl.GeolocateControl({
+      positionOptions: { enableHighAccuracy: true },
+      trackUserLocation: true,
+      showUserHeading: true
+    }), 'top-right');
+
+    // Marker at center
+    const marker = new mapboxgl.Marker().setLngLat(center).addTo(map);
+
+    // Fetch weather from your proxy and show a popup + JSON output
+    async function showWeatherAt(lngLat) {
+      const out = document.getElementById('out');
+      out.textContent = 'Loading weather…';
+
+      try {
+        const url = `/weather?lat=${lngLat.lat}&lon=${lngLat.lng}`;
+        const res = await fetch(url);
+        if (!res.ok) throw new Error(`Weather API error: ${res.status}`);
+        const data = await res.json();
+
+        const { name, main, weather, wind } = data;
+        const title = name || `(${lngLat.lat.toFixed(3)}, ${lngLat.lng.toFixed(3)})`;
+        const desc = weather?.[0]?.description ?? '—';
+
+        // Move marker and open popup
+        marker.setLngLat([lngLat.lng, lngLat.lat]);
+        new mapboxgl.Popup()
+          .setLngLat([lngLat.lng, lngLat.lat])
+          .setHTML(
+            `<strong>${title}</strong><br>` +
+            `Temp: ${main?.temp ?? '—'} °F (feels ${main?.feels_like ?? '—'} °F)<br>` +
+            `Conditions: ${desc}<br>` +
+            `Wind: ${wind?.speed ?? '—'} mph`
+          )
+          .addTo(map);
+
+        // Also dump raw JSON for debugging
+        out.textContent = JSON.stringify(data, null, 2);
+      } catch (err) {
+        out.textContent = String(err);
+        console.error(err);
+      }
+    }
+
+    // On map load, show default location’s weather
+    map.on('load', () => showWeatherAt({ lng: center[0], lat: center[1] }));
+
+    // On click, fetch weather for clicked point
+    map.on('click', (e) => showWeatherAt(e.lngLat));
+
+
+  </script>
+</body>
+</html>
