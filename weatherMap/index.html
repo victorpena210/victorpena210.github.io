@@ -11,7 +11,6 @@
   <script src="https://api.mapbox.com/mapbox-gl-js/v2.15.0/mapbox-gl.js"></script>
 
   <style>
-
     html, body { margin:0; padding:0; height:100%; }
     #map { width:100%; height: 70vh; }
     #out { padding: 8px 12px; font-family: ui-sans-serif, system-ui; }
@@ -26,12 +25,14 @@
   <div id="map"></div>
   <pre id="out"></pre>
 
-
-
   <script>
-    // Use your PUBLIC Mapbox token; restrict it to http://localhost:3000 and your prod domain(s)
+    // Mapbox public token (this can live in front-end JS)
     const MAPBOX_PUBLIC_TOKEN = 'pk.eyJ1IjoidnBlbmEiLCJhIjoiY21oeGtjbmkxMDI3NDJycTI5MDJ6MmlqcCJ9.pLSlLX6ubYU_iCkpBZLO1g';
     mapboxgl.accessToken = MAPBOX_PUBLIC_TOKEN;
+
+    // 🔑 PUT YOUR OPENWEATHER API KEY HERE
+    // (This will be visible in the browser. That's normal for OpenWeather browser usage.)
+    const OPENWEATHER_KEY = '2f70f69e0924683ac126c7451f3927ef';
 
     // San Antonio default center
     const center = [-98.4868, 29.4241];
@@ -55,13 +56,18 @@
     // Marker at center
     const marker = new mapboxgl.Marker().setLngLat(center).addTo(map);
 
-    // Fetch weather from your proxy and show a popup + JSON output
+    // Fetch weather from OpenWeather and show a popup + JSON output
     async function showWeatherAt(lngLat) {
       const out = document.getElementById('out');
       out.textContent = 'Loading weather…';
 
       try {
-        const url = `/weather?lat=${lngLat.lat}&lon=${lngLat.lng}`;
+        // 👇 Direct call to OpenWeather instead of /weather proxy
+        const url =
+          `https://api.openweathermap.org/data/2.5/weather` +
+          `?lat=${lngLat.lat}&lon=${lngLat.lng}` +
+          `&appid=${OPENWEATHER_KEY}&units=imperial`;
+
         const res = await fetch(url);
         if (!res.ok) throw new Error(`Weather API error: ${res.status}`);
         const data = await res.json();
@@ -95,8 +101,6 @@
 
     // On click, fetch weather for clicked point
     map.on('click', (e) => showWeatherAt(e.lngLat));
-
-
   </script>
 </body>
 </html>

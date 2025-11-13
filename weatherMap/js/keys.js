@@ -1,1 +1,0 @@
-var openWeatherMap = "2f70f69e0924683ac126c7451f3927ef";
