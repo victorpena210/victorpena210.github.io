@@ -18,6 +18,8 @@
   </style>
 </head>
 <body>
+  <div id="navbar"></div>
+
   <header>
     <h1>Weather + Mapbox demo</h1>
   </header>
@@ -102,5 +104,6 @@
     // On click, fetch weather for clicked point
     map.on('click', (e) => showWeatherAt(e.lngLat));
   </script>
+  <script src="/js/navbar.js"></script>
 </body>
 </html>

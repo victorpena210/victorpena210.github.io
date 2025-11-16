@@ -2,34 +2,653 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
+  <title>Victor Peña – Resume</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Coffee Shop</title>
+  <style>
+    /* ====== Base ====== */
+    :root {
+      --bg: #050816;
+      --bg-alt: #0f172a;
+      --card: #020617;
+      --accent: #38bdf8;
+      --accent-soft: rgba(56, 189, 248, 0.08);
+      --text: #e5e7eb;
+      --muted: #9ca3af;
+      --border: #1f2937;
+      --radius-lg: 18px;
+    }
 
-  <!-- Bootstrap CSS -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    * {
+      box-sizing: border-box;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text", sans-serif;
+      background: radial-gradient(circle at top, #0b1120 0, #020617 40%, #000 100%);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    /* ====== Layout ====== */
+    .page {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 0 1.25rem;
+    }
+
+    /* ====== Navbar ====== */
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      backdrop-filter: blur(14px);
+      background: linear-gradient(to bottom, rgba(15, 23, 42, 0.95), rgba(15, 23, 42, 0.7));
+      border-bottom: 1px solid rgba(148, 163, 184, 0.15);
+    }
+
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      padding: 0.75rem 1.25rem;
+    }
+
+    .nav-brand {
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      font-size: 0.95rem;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 0.75rem;
+      font-size: 0.9rem;
+    }
+
+    .nav-links a {
+      padding: 0.35rem 0.85rem;
+      border-radius: 999px;
+      color: var(--muted);
+      border: 1px solid transparent;
+      transition:
+        background-color 0.2s ease,
+        color 0.2s ease,
+        border-color 0.2s ease,
+        transform 0.1s ease;
+    }
+
+    .nav-links a:hover {
+      background: rgba(15, 23, 42, 0.9);
+      border-color: rgba(148, 163, 184, 0.5);
+      color: var(--text);
+      transform: translateY(-1px);
+    }
+
+    /* ====== Hero / Header ====== */
+    header.hero {
+      padding: 2.5rem 0 1.5rem;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 2.3fr) minmax(0, 1.3fr);
+      gap: 2rem;
+      align-items: center;
+    }
+
+    @media (max-width: 768px) {
+      .hero-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
+    .hero-title {
+      font-size: clamp(2rem, 3vw + 1rem, 2.8rem);
+      font-weight: 700;
+      letter-spacing: 0.03em;
+      margin: 0 0 0.5rem;
+    }
+
+    .hero-subtitle {
+      font-size: 1rem;
+      color: var(--muted);
+      max-width: 36rem;
+    }
+
+    .pill-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin: 1rem 0 1.5rem;
+    }
+
+    .pill {
+      border-radius: 999px;
+      padding: 0.35rem 0.8rem;
+      font-size: 0.8rem;
+      border: 1px solid rgba(148, 163, 184, 0.5);
+      color: var(--muted);
+      background: radial-gradient(circle at top left, var(--accent-soft), rgba(15, 23, 42, 0.9));
+    }
+
+    .hero-contact {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      font-size: 0.9rem;
+      color: var(--muted);
+    }
+
+    .hero-contact a {
+      text-decoration: underline;
+      text-decoration-color: rgba(148, 163, 184, 0.7);
+      text-underline-offset: 3px;
+    }
+
+    .hero-card {
+      border-radius: 24px;
+      background: radial-gradient(circle at top, rgba(30, 64, 175, 0.4), rgba(15, 23, 42, 0.95));
+      border: 1px solid rgba(148, 163, 184, 0.35);
+      padding: 1.25rem 1.5rem;
+      box-shadow:
+        0 18px 45px rgba(15, 23, 42, 0.9),
+        0 0 0 1px rgba(15, 23, 42, 0.7);
+    }
+
+    .hero-card-title {
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--muted);
+      margin-bottom: 0.6rem;
+    }
+
+    .hero-card-main {
+      font-size: 0.96rem;
+      margin-bottom: 0.85rem;
+    }
+
+    .hero-card-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      font-size: 0.75rem;
+    }
+
+    .hero-card-tag {
+      border-radius: 999px;
+      padding: 0.25rem 0.7rem;
+      border: 1px solid rgba(148, 163, 184, 0.4);
+      color: var(--muted);
+      background: rgba(15, 23, 42, 0.9);
+    }
+
+    /* ====== Sections ====== */
+    section {
+      padding: 1.5rem 0 0.75rem;
+    }
+
+    section + section {
+      border-top: 1px solid rgba(31, 41, 55, 0.9);
+      margin-top: 1.5rem;
+    }
+
+    .section-header {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 0.5rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .section-title {
+      font-size: 1.05rem;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: var(--muted);
+    }
+
+    .section-subtitle {
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+
+    /* ====== Cards / Lists ====== */
+    .card-list {
+      display: grid;
+      gap: 0.9rem;
+    }
+
+    .card {
+      background: linear-gradient(135deg, rgba(15, 23, 42, 0.98), #020617);
+      border-radius: var(--radius-lg);
+      padding: 0.9rem 1rem;
+      border: 1px solid var(--border);
+      transition:
+        border-color 0.15s ease,
+        transform 0.1s ease,
+        box-shadow 0.1s ease,
+        background 0.15s ease;
+    }
+
+    .card:hover {
+      border-color: rgba(56, 189, 248, 0.8);
+      transform: translateY(-1px);
+      box-shadow:
+        0 20px 40px rgba(15, 23, 42, 0.9),
+        0 0 0 1px rgba(15, 23, 42, 0.7);
+      background: radial-gradient(circle at top left, rgba(56, 189, 248, 0.08), #020617);
+    }
+
+    .card-header {
+      display: flex;
+      justify-content: space-between;
+      gap: 0.75rem;
+      align-items: baseline;
+      margin-bottom: 0.1rem;
+    }
+
+    .card-title {
+      font-size: 0.98rem;
+      font-weight: 600;
+    }
+
+    .card-meta {
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+
+    .card-subtitle {
+      font-size: 0.85rem;
+      color: var(--muted);
+      margin-bottom: 0.4rem;
+    }
+
+    .card-body {
+      font-size: 0.9rem;
+      color: var(--text);
+    }
+
+    .bullet-list {
+      margin: 0.4rem 0 0;
+      padding-left: 1.05rem;
+      font-size: 0.87rem;
+    }
+
+    .bullet-list li {
+      margin-bottom: 0.18rem;
+    }
+
+    .tag-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.35rem;
+      margin-top: 0.45rem;
+    }
+
+    .tag {
+      font-size: 0.75rem;
+      padding: 0.2rem 0.55rem;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.6);
+      color: var(--muted);
+      background: rgba(15, 23, 42, 0.9);
+    }
+
+    /* ====== Skills ====== */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 0.75rem;
+    }
+
+    .skills-group-title {
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: var(--muted);
+      margin-bottom: 0.25rem;
+    }
+
+    .skills-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.3rem;
+      font-size: 0.78rem;
+    }
+
+    .skills-chip {
+      border-radius: 999px;
+      padding: 0.2rem 0.55rem;
+      border: 1px solid rgba(148, 163, 184, 0.5);
+      color: var(--muted);
+      background: rgba(15, 23, 42, 0.9);
+    }
+
+    /* ====== Contact ====== */
+    .contact-box {
+      margin-top: 0.5rem;
+      padding: 0.8rem 1rem;
+      border-radius: var(--radius-lg);
+      border: 1px dashed rgba(148, 163, 184, 0.5);
+      background: radial-gradient(circle at top left, rgba(56, 189, 248, 0.09), rgba(15, 23, 42, 0.9));
+      font-size: 0.9rem;
+    }
+
+    .contact-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      margin-top: 0.35rem;
+    }
+
+    .contact-item {
+      font-size: 0.88rem;
+      color: var(--muted);
+    }
+
+    .contact-item span {
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: #6b7280;
+      display: block;
+      margin-bottom: 0.05rem;
+    }
+
+    .contact-item a {
+      text-decoration: underline;
+      text-decoration-color: rgba(148, 163, 184, 0.7);
+      text-underline-offset: 3px;
+    }
+
+    /* ====== Footer ====== */
+    footer {
+      padding: 1.25rem 0 1.75rem;
+      font-size: 0.78rem;
+      color: var(--muted);
+      text-align: center;
+    }
+  </style>
 </head>
-<body class="bg-body-tertiary">
-<div id="navbar"></div>
+<body>
+  <div class="page">
+    <!-- ====== NAVBAR ====== -->
+    <nav class="nav">
+      <div class="container nav-inner">
+        <div class="nav-brand">Victor Peña • Resume</div>
+        <div class="nav-links">
+          <a href="#experience">Experience</a>
+          <a href="#projects">Projects</a>
+          <a href="#skills">Skills</a>
+          <a href="#contact">Contact</a>
+        </div>
+      </div>
+    </nav>
 
-<h1>Victor Peña</h1>
-<a href="tel:2108950125">Call me</a>
-<h3>13victor.pena@gmail.com</h3>
-Junior developer building API-powered web apps and tools.
+    <main class="container">
+      <!-- ====== HERO / INTRO ====== -->
+      <header class="hero" id="top">
+        <div class="hero-grid">
+          <div>
+            <h1 class="hero-title">Victor Peña</h1>
+            <p class="hero-subtitle">
+              <!-- Swap this with your actual headline -->
+              Full-stack developer & problem-solver focused on building clean, practical solutions with Java,
+              JavaScript, and modern web tools.
+            </p>
 
+            <div class="pill-row">
+              <div class="pill">San Antonio, TX</div>
+              <div class="pill">Open to full-time & contract</div>
+              <div class="pill">Immediate start</div>
+            </div>
 
-<h1>projects</h1>
-    <a href="coffeeProject/main.html">coffee project</a> 
-    </br>
-    <a href="weatherMap/index.html">weather map</a>
-    </br>
-    <a href="calculator/index.html">calculator</a>
+            <div class="hero-contact">
+              <!-- Replace with your real info -->
+              <div>Email: <a href="mailto:13victor.pena@gmail.com">13victor.pena@gmail.com</a></div>
+              <div>•</div>
+              <div>Phone: <a href="tel:+12108950125">+1 (210) 895-0125</a></div>
+              <div>•</div>
+              <div>GitHub: <a href="https://github.com/victorpena210 target="_blank" rel="noreferrer">github.com/victorpena210</a></div>
+            </div>
+          </div>
 
+          <aside class="hero-card">
+            <div class="hero-card-title">Profile</div>
+            <div class="hero-card-main">
+              Curious, hands-on developer with experience shipping Java web apps, Node/Express APIs, and
+              front-end projects that integrate real-world APIs and data.
+            </div>
+            <div class="hero-card-tags">
+              <div class="hero-card-tag">Java (Servlets, JSP)</div>
+              <div class="hero-card-tag">Node & Express</div>
+              <div class="hero-card-tag">REST / JSON APIs</div>
+              <div class="hero-card-tag">HTML • CSS • JS</div>
+            </div>
+          </aside>
+        </div>
+      </header>
 
+      <!-- ====== EXPERIENCE ====== -->
+      <section id="experience">
+        <div class="section-header">
+          <h2 class="section-title">Experience</h2>
+          <p class="section-subtitle">Recent roles & impact</p>
+        </div>
 
+        <div class="card-list">
+          <!-- Example job 1 -->
+          <article class="card">
+            <div class="card-header">
+              <div>
+                <div class="card-title">Wardrobe Attendant – Human Resources</div>
+                <div class="card-subtitle">Six Flags Fiesta Texas · San Antonio, TX</div>
+              </div>
+              <div class="card-meta">2024 – Present</div>
+            </div>
+            <div class="card-body">
+              <ul class="bullet-list">
+                <li>Manage and distribute uniforms, name tags, and custom orders across multiple park departments.</li>
+                <li>Support new hires by fitting uniforms, answering questions, and helping them get to their work locations.</li>
+                <li>Operate an internal shuttle to move team members efficiently to their assignments.</li>
+                <li>Assist with employee scouting and HR events to support seasonal hiring needs.</li>
+              </ul>
+            </div>
+          </article>
 
-  <!-- JS: use the bundle ONLY (it includes Popper) -->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-  <script src="js/navbar.js"></script>
+      <!-- ====== PROJECTS ====== -->
+      <section id="projects">
+        <div class="section-header">
+          <h2 class="section-title">Projects</h2>
+          <p class="section-subtitle">Hands-on technical work</p>
+        </div>
 
+        <div class="card-list">
+          <!-- Project 1 -->
+          <article class="card">
+            <div class="card-header">
+              <div class="card-title">E-commerce Store Skeleton (Java)</div>
+              <div class="card-meta">Java · Tomcat · MySQL</div>
+            </div>
+            <div class="card-subtitle">
+              Full-stack Java web app demonstrating account creation, login, product browsing, and cart management.
+            </div>
+            <div class="card-body">
+              <ul class="bullet-list">
+                <li>Built a servlet/JSP-based web application running on Tomcat with a MySQL backend for products and users.</li>
+                <li>Implemented session-based cart, account pages, and secure login/logout flows.</li>
+                <li>Structured the project with clear separation between controllers, services, and data-access objects.</li>
+              </ul>
+              <div class="tag-row">
+                <span class="tag">Java 17</span>
+                <span class="tag">Jakarta Servlets</span>
+                <span class="tag">JSP & JSTL</span>
+                <span class="tag">MySQL</span>
+              </div>
+            </div>
+          </article>
+
+          <!-- Project 2 -->
+          <article class="card">
+            <div class="card-header">
+              <div class="card-title">Weather + Mapbox Explorer</div>
+              <div class="card-meta">JavaScript · APIs</div>
+            </div>
+            <div class="card-subtitle">
+              Front-end app that combines real-time weather data with an interactive map experience.
+            </div>
+            <div class="card-body">
+              <ul class="bullet-list">
+                <li>Integrated the OpenWeather API and Mapbox GL JS to show weather information for any location on an interactive map.</li>
+                <li>Handled API keys via environment variables and separated configuration from UI logic.</li>
+                <li>Designed a simple, responsive layout that works cleanly on desktop and mobile.</li>
+              </ul>
+              <div class="tag-row">
+                <span class="tag">OpenWeather API</span>
+                <span class="tag">Mapbox GL JS</span>
+                <span class="tag">HTML · CSS · JS</span>
+              </div>
+            </div>
+          </article>
+
+          <!-- Project 3 (optional / placeholder) -->
+          <article class="card">
+            <div class="card-header">
+              <div class="card-title">Coffee Store API (Node/Express)</div>
+              <div class="card-meta">Node · Express</div>
+            </div>
+            <div class="card-subtitle">
+              Simple REST API for managing a catalog of coffee drinks and orders.
+            </div>
+            <div class="card-body">
+              <ul class="bullet-list">
+                <li>Set up a Node/Express server with environment-based configuration using <code>dotenv</code>.</li>
+                <li>Exposed routes to list drinks, create orders, and simulate a basic store workflow.</li>
+                <li>Used nodemon, ESLint, and Prettier to improve the development workflow and code quality.</li>
+              </ul>
+              <div class="tag-row">
+                <span class="tag">Node.js</span>
+                <span class="tag">Express</span>
+                <span class="tag">REST</span>
+              </div>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <!-- ====== SKILLS ====== -->
+      <section id="skills">
+        <div class="section-header">
+          <h2 class="section-title">Skills</h2>
+          <p class="section-subtitle">Tech + people skills</p>
+        </div>
+
+        <div class="skills-grid">
+          <div>
+            <div class="skills-group-title">Languages & Tech</div>
+            <div class="skills-chips">
+              <span class="skills-chip">Java</span>
+              <span class="skills-chip">JavaScript</span>
+              <span class="skills-chip">HTML</span>
+              <span class="skills-chip">CSS</span>
+              <span class="skills-chip">SQL / MySQL</span>
+            </div>
+          </div>
+
+          <div>
+            <div class="skills-group-title">Frameworks & Tools</div>
+            <div class="skills-chips">
+              <span class="skills-chip">Tomcat</span>
+              <span class="skills-chip">Node.js / Express</span>
+              <span class="skills-chip">Mapbox GL JS</span>
+              <span class="skills-chip">OpenWeather API</span>
+              <span class="skills-chip">Git / GitHub</span>
+            </div>
+          </div>
+
+          <div>
+            <div class="skills-group-title">Soft Skills</div>
+            <div class="skills-chips">
+              <span class="skills-chip">Customer service</span>
+              <span class="skills-chip">Team communication</span>
+              <span class="skills-chip">Time management</span>
+              <span class="skills-chip">Problem solving</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ====== CONTACT ====== -->
+      <section id="contact">
+        <div class="section-header">
+          <h2 class="section-title">Contact</h2>
+          <p class="section-subtitle">Let’s talk</p>
+        </div>
+
+        <div class="contact-box">
+          <p>
+            I’m interested in roles where I can grow as a developer and work on real products with a collaborative team.
+          </p>
+          <div class="contact-row">
+            <div class="contact-item">
+              <span>Email</span>
+              <a href="mailto:youremail@example.com">youremail@example.com</a>
+            </div>
+            <div class="contact-item">
+              <span>Phone</span>
+              <a href="tel:+12100000000">+1 (210) 000-0000</a>
+            </div>
+            <div class="contact-item">
+              <span>GitHub</span>
+              <a href="https://github.com/your-github" target="_blank" rel="noreferrer">
+                github.com/your-github
+              </a>
+            </div>
+            <!-- Optional: portfolio link -->
+            <!--
+            <div class="contact-item">
+              <span>Portfolio</span>
+              <a href="https://your-portfolio-url.com" target="_blank" rel="noreferrer">
+                your-portfolio-url.com
+              </a>
+            </div>
+            -->
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      &copy; <span id="year"></span> Your Name. All rights reserved.
+    </footer>
+  </div>
+
+  <script>
+    // Auto-update footer year
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
 </body>
 </html>
