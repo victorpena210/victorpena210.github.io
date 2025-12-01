@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Albatross Coffee Co.</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="container nav-container">
+      <div class="logo">
+        Albatross<span>Coffee Co.</span>
+      </div>
+
+      <nav class="site-nav" id="siteNav">
+        <ul>
+          <li><a href="#hero">Home</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#menu">Menu</a></li>
+          <li><a href="#visit">Visit</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+
+      <div class="nav-actions">
+        <button class="btn btn-outline cart-btn" id="cartButton">
+          Cart (<span id="cartCount">0</span>)
+        </button>
+        <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation">
+          ☰
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- HERO -->
+    <section id="hero" class="hero">
+      <div class="container hero-inner">
+        <div class="hero-text">
+          <h1>Small Batch. Big Flavor.</h1>
+          <p>
+            Albatross Coffee Co. is your neighborhood spot for fresh roasts,
+            cozy vibes, and long coding sessions.
+          </p>
+          <div class="hero-actions">
+            <a href="#menu" class="btn">View Menu</a>
+            <button class="btn btn-outline" id="specialsBtn">Today’s Specials</button>
+          </div>
+          <p class="hero-note">Open daily · 7:00 AM – 8:00 PM</p>
+        </div>
+        <div class="hero-card">
+          <h2>House Favorite</h2>
+          <p class="hero-coffee-name">Midnight Debugger Latte</p>
+          <p class="hero-coffee-desc">
+            Double shot espresso, steamed oat milk, touch of vanilla, and a dash
+            of cocoa to help you ship that last feature.
+          </p>
+          <p class="hero-price">$5.25</p>
+          <button class="btn add-to-cart" data-name="Midnight Debugger Latte" data-price="5.25">
+            Add to Cart
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="about" class="section">
+      <div class="container section-inner two-col">
+        <div>
+          <h2>About Albatross Coffee Co.</h2>
+          <p>
+            We’re a small, independent coffee shop focused on craft espresso,
+            slow bar brews, and creating a space where people can think, build,
+            and hang out.
+          </p>
+          <p>
+            Beans are roasted weekly in-house and sourced from farms that care
+            about their workers and the planet. Whether you’re debugging a
+            project, meeting a friend, or just vibing with a book, we’ve got a
+            seat for you.
+          </p>
+        </div>
+        <div class="about-highlights">
+          <div class="highlight">
+            <h3>Fresh Roasts</h3>
+            <p>Single-origin and seasonal blends rotated every month.</p>
+          </div>
+          <div class="highlight">
+            <h3>Workspace Friendly</h3>
+            <p>Fast Wi-Fi, plenty of outlets, and bottomless drip coffee refills.</p>
+          </div>
+          <div class="highlight">
+            <h3>Local & Cozy</h3>
+            <p>Designed to feel like your second living room, but with better coffee.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- MENU -->
+    <section id="menu" class="section section-alt">
+      <div class="container">
+        <h2 class="section-title">Menu Highlights</h2>
+        <p class="section-subtitle">Tap “Add to Cart” to build your dream order.</p>
+
+        <div class="menu-filters">
+          <button class="chip chip-active" data-filter="all">All</button>
+          <button class="chip" data-filter="hot">Hot</button>
+          <button class="chip" data-filter="cold">Cold</button>
+          <button class="chip" data-filter="bakery">Bakery</button>
+        </div>
+
+        <div class="menu-grid">
+          <!-- Item 1 -->
+          <article class="menu-item" data-category="hot">
+            <h3>Albatross Espresso</h3>
+            <p class="menu-desc">Rich, smooth double shot pulled to perfection.</p>
+            <div class="menu-meta">
+              <span class="menu-price">$3.25</span>
+              <button class="btn btn-small add-to-cart" data-name="Albatross Espresso" data-price="3.25">
+                Add to Cart
+              </button>
+            </div>
+          </article>
+
+          <!-- Item 2 -->
+          <article class="menu-item" data-category="hot">
+            <h3>Cappuccino</h3>
+            <p class="menu-desc">Classic 6oz cappuccino with velvety microfoam.</p>
+            <div class="menu-meta">
+              <span class="menu-price">$4.50</span>
+              <button class="btn btn-small add-to-cart" data-name="Cappuccino" data-price="4.50">
+                Add to Cart
+              </button>
+            </div>
+          </article>
+
+          <!-- Item 3 -->
+          <article class="menu-item" data-category="cold">
+            <h3>Cold Brew</h3>
+            <p class="menu-desc">24-hour steep, chocolatey and smooth over ice.</p>
+            <div class="menu-meta">
+              <span class="menu-price">$4.75</span>
+              <button class="btn btn-small add-to-cart" data-name="Cold Brew" data-price="4.75">
+                Add to Cart
+              </button>
+            </div>
+          </article>
+
+          <!-- Item 4 -->
+          <article class="menu-item" data-category="cold">
+            <h3>Iced Vanilla Latte</h3>
+            <p class="menu-desc">Espresso, milk, vanilla syrup, ice. Simple and perfect.</p>
+            <div class="menu-meta">
+              <span class="menu-price">$5.00</span>
+              <button class="btn btn-small add-to-cart" data-name="Iced Vanilla Latte" data-price="5.00">
+                Add to Cart
+              </button>
+            </div>
+          </article>
+
+          <!-- Item 5 -->
+          <article class="menu-item" data-category="bakery">
+            <h3>Almond Croissant</h3>
+            <p class="menu-desc">Flaky, buttery, filled with almond cream and toasted on top.</p>
+            <div class="menu-meta">
+              <span class="menu-price">$3.75</span>
+              <button class="btn btn-small add-to-cart" data-name="Almond Croissant" data-price="3.75">
+                Add to Cart
+              </button>
+            </div>
+          </article>
+
+          <!-- Item 6 -->
+          <article class="menu-item" data-category="bakery">
+            <h3>Chocolate Chip Cookie</h3>
+            <p class="menu-desc">Crispy edges, soft center, loaded with chocolate.</p>
+            <div class="menu-meta">
+              <span class="menu-price">$2.50</span>
+              <button class="btn btn-small add-to-cart" data-name="Chocolate Chip Cookie" data-price="2.50">
+                Add to Cart
+              </button>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- VISIT -->
+    <section id="visit" class="section">
+      <div class="container section-inner two-col">
+        <div>
+          <h2>Visit Us</h2>
+          <p>
+            123 Albatross Lane<br />
+            San Antonio, TX 78202
+          </p>
+
+          <div class="hours">
+            <h3>Hours</h3>
+            <ul>
+              <li>Mon – Fri: 7:00 AM – 8:00 PM</li>
+              <li>Sat – Sun: 8:00 AM – 9:00 PM</li>
+            </ul>
+          </div>
+
+          <div class="badge-row">
+            <span class="badge">Free Wi-Fi</span>
+            <span class="badge">Plenty of Outlets</span>
+            <span class="badge">Pet Friendly Patio</span>
+          </div>
+        </div>
+
+        <div class="visit-card">
+          <h3>Neighborhood Map (Placeholder)</h3>
+          <p>
+            In a real app, this could be an embedded Mapbox or Google Map.
+          </p>
+          <div class="fake-map">
+            <div class="fake-pin">☕</div>
+            <span>Albatross Coffee Co.</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact" class="section section-alt">
+      <div class="container section-inner two-col">
+        <div>
+          <h2>Get in Touch</h2>
+          <p>
+            Have a question, want to host an event, or planning a study group?
+            Send us a message.
+          </p>
+
+          <ul class="contact-list">
+            <li><strong>Email:</strong> hello@albatrosscoffee.fake</li>
+            <li><strong>Phone:</strong> (210) 555-0123</li>
+            <li><strong>Instagram:</strong> @albatrosscoffee</li>
+          </ul>
+        </div>
+
+        <form id="contactForm" class="contact-form">
+          <div class="form-group">
+            <label for="name">Name *</label>
+            <input id="name" type="text" required />
+          </div>
+
+          <div class="form-group">
+            <label for="email">Email *</label>
+            <input id="email" type="email" required />
+          </div>
+
+          <div class="form-group">
+            <label for="message">Message *</label>
+            <textarea id="message" rows="4" required></textarea>
+          </div>
+
+          <button type="submit" class="btn">Send Message</button>
+          <p id="formStatus" class="form-status" aria-live="polite"></p>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <!-- CART DRAWER -->
+  <div class="cart-drawer" id="cartDrawer">
+    <div class="cart-header">
+      <h2>Your Cart</h2>
+      <button class="cart-close" id="cartClose" aria-label="Close cart">✕</button>
+    </div>
+    <div class="cart-body">
+      <ul id="cartItems"></ul>
+      <p class="cart-empty" id="cartEmpty">Your cart is empty (for now).</p>
+    </div>
+    <div class="cart-footer">
+      <p>Total: <span id="cartTotal">$0.00</span></p>
+      <button class="btn btn-block" id="checkoutBtn">Fake Checkout</button>
+    </div>
+  </div>
+
+  <!-- TOAST -->
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <p>© <span id="year"></span> Albatross Coffee Co. · This is a demo site.</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
