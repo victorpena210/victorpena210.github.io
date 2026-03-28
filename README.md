@@ -1,1 +1,2 @@
-# victorpena210.github.io
+
+This repository contains my personal portfolio and resume website, built to showcase my experience, technical skills, and software development projects. It features full-stack Java applications, front-end projects using HTML, CSS, and JavaScript, live demos, and links to source code. The site serves as a central place for employers, collaborators, and recruiters to learn more about my work and background as a developer.
