@@ -4,12 +4,7 @@
   <meta charset="utf-8" />
   <title>Victor Peña – Resume</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <link
-  rel="stylesheet"
-  href="https://unpkg.com/github-calendar@latest/dist/github-calendar-responsive.css"
-/>
   <style>
-    /* ====== Base ====== */
     :root {
       --bg: #050816;
       --bg-alt: #0f172a;
@@ -27,8 +22,12 @@
       scroll-behavior: smooth;
     }
 
-    body {
+    html, body {
       margin: 0;
+      padding: 0;
+    }
+
+    body {
       font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text", sans-serif;
       background: radial-gradient(circle at top, #0b1120 0, #020617 40%, #000 100%);
       color: var(--text);
@@ -40,12 +39,6 @@
       text-decoration: none;
     }
 
-    img {
-      max-width: 100%;
-      display: block;
-    }
-
-    /* ====== Layout ====== */
     .page {
       min-height: 100vh;
       display: flex;
@@ -59,7 +52,7 @@
       padding: 0 1.25rem;
     }
 
-    /* ====== Navbar ====== */
+    /* ===== NAV ===== */
     .nav {
       position: sticky;
       top: 0;
@@ -74,7 +67,7 @@
       align-items: center;
       justify-content: space-between;
       gap: 1rem;
-      padding: 0.75rem 1.25rem;
+      padding: 0.85rem 1.25rem;
     }
 
     .nav-brand {
@@ -87,6 +80,7 @@
 
     .nav-links {
       display: flex;
+      flex-wrap: wrap;
       gap: 0.75rem;
       font-size: 0.9rem;
     }
@@ -96,11 +90,7 @@
       border-radius: 999px;
       color: var(--muted);
       border: 1px solid transparent;
-      transition:
-        background-color 0.2s ease,
-        color 0.2s ease,
-        border-color 0.2s ease,
-        transform 0.1s ease;
+      transition: 0.2s ease;
     }
 
     .nav-links a:hover {
@@ -110,106 +100,76 @@
       transform: translateY(-1px);
     }
 
-    /* ====== Hero / Header ====== */
-    header.hero {
-      padding: 2.5rem 0 1.5rem;
+    /* ===== HERO ===== */
+    .hero {
+      padding: 3rem 0 2rem;
     }
 
-    .hero-grid {
-      display: grid;
-      grid-template-columns: minmax(0, 2.3fr) minmax(0, 1.3fr);
-      gap: 2rem;
-      align-items: center;
+    .hero-content {
+      max-width: 760px;
     }
 
-    @media (max-width: 768px) {
-      .hero-grid {
-        grid-template-columns: minmax(0, 1fr);
-      }
-    }
-
-    .hero-title {
-      font-size: clamp(2rem, 3vw + 1rem, 2.8rem);
-      font-weight: 700;
-      letter-spacing: 0.03em;
-      margin: 0 0 0.5rem;
-    }
-
-    .hero-subtitle {
-      font-size: 1rem;
-      color: var(--muted);
-      max-width: 36rem;
-    }
-
-    .pill-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.5rem;
-      margin: 1rem 0 1.5rem;
-    }
-
-    .pill {
-      border-radius: 999px;
-      padding: 0.35rem 0.8rem;
-      font-size: 0.8rem;
-      border: 1px solid rgba(148, 163, 184, 0.5);
-      color: var(--muted);
-      background: radial-gradient(circle at top left, var(--accent-soft), rgba(15, 23, 42, 0.9));
-    }
-
-    .hero-contact {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.5rem;
+    .eyebrow {
+      margin: 0 0 0.75rem;
       font-size: 0.9rem;
-      color: var(--muted);
-    }
-
-    .hero-contact a {
-      text-decoration: underline;
-      text-decoration-color: rgba(148, 163, 184, 0.7);
-      text-underline-offset: 3px;
-    }
-
-    .hero-card {
-      border-radius: 24px;
-      background: radial-gradient(circle at top, rgba(30, 64, 175, 0.4), rgba(15, 23, 42, 0.95));
-      border: 1px solid rgba(148, 163, 184, 0.35);
-      padding: 1.25rem 1.5rem;
-      box-shadow:
-        0 18px 45px rgba(15, 23, 42, 0.9),
-        0 0 0 1px rgba(15, 23, 42, 0.7);
-    }
-
-    .hero-card-title {
-      font-size: 0.85rem;
+      letter-spacing: 0.06em;
       text-transform: uppercase;
-      letter-spacing: 0.12em;
+      color: var(--accent);
+    }
+
+    .hero h1 {
+      margin: 0 0 0.75rem;
+      font-size: clamp(2rem, 3vw + 1rem, 3rem);
+      line-height: 1.1;
+      letter-spacing: 0.02em;
+    }
+
+    .hero-text {
+      margin: 0 0 1rem;
+      max-width: 44rem;
       color: var(--muted);
-      margin-bottom: 0.6rem;
+      font-size: 1rem;
     }
 
-    .hero-card-main {
-      font-size: 0.96rem;
-      margin-bottom: 0.85rem;
-    }
-
-    .hero-card-tags {
+    .hero-actions {
       display: flex;
       flex-wrap: wrap;
+      gap: 0.75rem;
+      margin-top: 1.5rem;
+    }
+
+    .btn,
+    .pill-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
       gap: 0.4rem;
-      font-size: 0.75rem;
-    }
-
-    .hero-card-tag {
+      padding: 0.7rem 1rem;
       border-radius: 999px;
-      padding: 0.25rem 0.7rem;
       border: 1px solid rgba(148, 163, 184, 0.4);
-      color: var(--muted);
-      background: rgba(15, 23, 42, 0.9);
+      font-size: 0.9rem;
+      font-weight: 500;
+      transition: 0.2s ease;
     }
 
-    /* ====== Sections ====== */
+    .btn:hover,
+    .pill-button:hover {
+      transform: translateY(-1px);
+      border-color: rgba(56, 189, 248, 0.75);
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, rgba(56, 189, 248, 0.22), rgba(15, 23, 42, 0.95));
+      color: var(--text);
+    }
+
+    .btn-secondary,
+    .pill-button {
+      background: rgba(15, 23, 42, 0.92);
+      color: var(--muted);
+    }
+
+    /* ===== SECTIONS ===== */
     section {
       padding: 1.5rem 0 0.75rem;
     }
@@ -224,7 +184,7 @@
       align-items: baseline;
       justify-content: space-between;
       gap: 0.5rem;
-      margin-bottom: 0.75rem;
+      margin-bottom: 0.9rem;
     }
 
     .section-title {
@@ -232,14 +192,16 @@
       text-transform: uppercase;
       letter-spacing: 0.16em;
       color: var(--muted);
+      margin: 0;
     }
 
     .section-subtitle {
       font-size: 0.8rem;
       color: var(--muted);
+      margin: 0;
     }
 
-    /* ====== Cards / Lists ====== */
+    /* ===== CARDS ===== */
     .card-list {
       display: grid;
       gap: 0.9rem;
@@ -248,13 +210,9 @@
     .card {
       background: linear-gradient(135deg, rgba(15, 23, 42, 0.98), #020617);
       border-radius: var(--radius-lg);
-      padding: 0.9rem 1rem;
+      padding: 1rem;
       border: 1px solid var(--border);
-      transition:
-        border-color 0.15s ease,
-        transform 0.1s ease,
-        box-shadow 0.1s ease,
-        background 0.15s ease;
+      transition: 0.15s ease;
     }
 
     .card:hover {
@@ -269,59 +227,66 @@
     .card-header {
       display: flex;
       justify-content: space-between;
-      gap: 0.75rem;
       align-items: baseline;
-      margin-bottom: 0.1rem;
+      gap: 0.75rem;
+      margin-bottom: 0.15rem;
     }
 
     .card-title {
-      font-size: 0.98rem;
+      font-size: 1rem;
       font-weight: 600;
     }
 
     .card-meta {
-      font-size: 0.8rem;
+      font-size: 0.82rem;
       color: var(--muted);
+      white-space: nowrap;
     }
 
     .card-subtitle {
-      font-size: 0.85rem;
+      font-size: 0.88rem;
       color: var(--muted);
-      margin-bottom: 0.4rem;
+      margin-bottom: 0.45rem;
     }
 
     .card-body {
-      font-size: 0.9rem;
-      color: var(--text);
+      font-size: 0.92rem;
     }
 
     .bullet-list {
-      margin: 0.4rem 0 0;
-      padding-left: 1.05rem;
-      font-size: 0.87rem;
+      margin: 0.45rem 0 0;
+      padding-left: 1.1rem;
+      font-size: 0.88rem;
     }
 
     .bullet-list li {
-      margin-bottom: 0.18rem;
+      margin-bottom: 0.22rem;
     }
 
     .tag-row {
       display: flex;
       flex-wrap: wrap;
       gap: 0.35rem;
-      margin-top: 0.45rem;
+      margin-top: 0.6rem;
     }
 
     .tag {
       font-size: 0.75rem;
       padding: 0.2rem 0.55rem;
       border-radius: 999px;
-      border: 1px solid rgba(148, 163, 184, 0.6);
+      border: 1px solid rgba(148, 163, 184, 0.55);
       color: var(--muted);
       background: rgba(15, 23, 42, 0.9);
     }
 
-    /* ====== Skills ====== */
+    .card-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+      margin-top: 0.8rem;
+    }
+
+    /* ===== SKILLS ===== */
     .skills-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
@@ -351,55 +316,57 @@
       background: rgba(15, 23, 42, 0.9);
     }
 
-    /* ====== Contact ====== */
-    .contact-box {
+    /* ===== CONTACT ===== */
+    .contact-content {
       margin-top: 0.5rem;
-      padding: 0.8rem 1rem;
+      padding: 1rem 1.1rem;
       border-radius: var(--radius-lg);
-      border: 1px dashed rgba(148, 163, 184, 0.5);
+      border: 1px dashed rgba(148, 163, 184, 0.45);
       background: radial-gradient(circle at top left, rgba(56, 189, 248, 0.09), rgba(15, 23, 42, 0.9));
-      font-size: 0.9rem;
     }
 
-    .contact-row {
+    .contact-content p {
+      margin: 0 0 0.9rem;
+      color: var(--text);
+    }
+
+    .contact-links {
       display: flex;
       flex-wrap: wrap;
-      gap: 0.75rem;
-      margin-top: 0.35rem;
+      gap: 1rem;
     }
 
-    .contact-item {
-      font-size: 0.88rem;
+    .contact-links a {
       color: var(--muted);
-    }
-
-    .contact-item span {
-      font-size: 0.8rem;
-      text-transform: uppercase;
-      letter-spacing: 0.16em;
-      color: #6b7280;
-      display: block;
-      margin-bottom: 0.05rem;
-    }
-
-    .contact-item a {
       text-decoration: underline;
       text-decoration-color: rgba(148, 163, 184, 0.7);
       text-underline-offset: 3px;
     }
 
-    /* ====== Footer ====== */
+    /* ===== FOOTER ===== */
     footer {
       padding: 1.25rem 0 1.75rem;
       font-size: 0.78rem;
       color: var(--muted);
       text-align: center;
     }
+
+    @media (max-width: 700px) {
+      .nav-inner,
+      .card-header,
+      .section-header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .card-meta {
+        white-space: normal;
+      }
+    }
   </style>
 </head>
 <body>
   <div class="page">
-    <!-- ====== NAVBAR ====== -->
     <nav class="nav">
       <div class="container nav-inner">
         <div class="nav-brand">Victor Peña • Resume</div>
@@ -413,30 +380,29 @@
     </nav>
 
     <main class="container">
-      <!-- ====== HERO / INTRO ====== -->
-<section id="home" class="hero">
-  <div class="hero-content">
-    <p class="eyebrow">San Antonio, TX · Junior Java Developer</p>
-    <h1>Hi, I’m Victor Pena.</h1>
-    <p class="hero-text">
-      I build Java web applications with Spring Boot, Servlets/JSP, MySQL, and REST-style backend workflows.
-      My projects focus on practical software engineering fundamentals like authentication, MVC architecture,
-      database-driven features, role-based access, and clean UI integration.
-    </p>
-    <p class="hero-text">
-      I’m actively working toward a junior backend or full-stack developer role where I can keep improving
-      through real-world projects, collaboration, and hands-on problem solving.
-    </p>
+      <section id="home" class="hero">
+        <div class="hero-content">
+          <p class="eyebrow">San Antonio, TX · Junior Java Developer</p>
+          <h1>Hi, I’m Victor Pena.</h1>
 
-    <div class="hero-actions">
-      <a href="#projects" class="btn btn-primary">View Projects</a>
-      <br>
-      <a href="#contact" class="btn btn-secondary">Contact Me</a>
-    </div>
-  </div>
-</section>
+          <p class="hero-text">
+            I build Java web applications with Spring Boot, Servlets/JSP, MySQL, and REST-style backend workflows.
+            My projects focus on practical software engineering fundamentals like authentication, MVC architecture,
+            database-driven features, role-based access, and clean UI integration.
+          </p>
 
-      <!-- ====== EXPERIENCE ====== -->
+          <p class="hero-text">
+            I’m actively working toward a junior backend or full-stack developer role where I can keep improving
+            through real-world projects, collaboration, and hands-on problem solving.
+          </p>
+
+          <div class="hero-actions">
+            <a href="#projects" class="btn btn-primary">View Projects</a>
+            <a href="#contact" class="btn btn-secondary">Contact Me</a>
+          </div>
+        </div>
+      </section>
+
       <section id="experience">
         <div class="section-header">
           <h2 class="section-title">Experience</h2>
@@ -444,7 +410,6 @@
         </div>
 
         <div class="card-list">
-          <!-- Example job 1 -->
           <article class="card">
             <div class="card-header">
               <div>
@@ -463,13 +428,11 @@
             </div>
           </article>
 
-                  <div class="card-list">
-          <!-- Example job 2 -->
           <article class="card">
             <div class="card-header">
               <div>
                 <div class="card-title">Web Developer</div>
-                <div class="card-subtitle">Penguin Suits Advertising Agency· Boerne, TX</div>
+                <div class="card-subtitle">Penguin Suits Advertising Agency · Boerne, TX</div>
               </div>
               <div class="card-meta">2023</div>
             </div>
@@ -482,8 +445,9 @@
               </ul>
             </div>
           </article>
+        </div>
+      </section>
 
-      <!-- ====== PROJECTS ====== -->
       <section id="projects">
         <div class="section-header">
           <h2 class="section-title">Projects</h2>
@@ -491,46 +455,46 @@
         </div>
 
         <div class="card-list">
-          <!-- Project -->
+          <article class="card">
+            <div class="card-header">
+              <div class="card-title">HelpDesk Ticketing App</div>
+              <div class="card-meta">Spring Boot · Thymeleaf · Spring Security</div>
+            </div>
+            <div class="card-subtitle">
+              Full-stack support ticket web application where users can register, submit help requests, track ticket progress, and manage workflows through role-based access and status updates.
+            </div>
+            <div class="card-body">
+              <ul class="bullet-list">
+                <li>Built user registration and login flows with Spring Security, authentication, and role-based access for requesters, agents, and admins.</li>
+                <li>Implemented ticket creation, ticket detail pages, and dashboard views so users can submit issues and track their requests in one place.</li>
+                <li>Added ticket workflow management with status updates such as NEW, OPEN, PENDING_CUSTOMER, RESOLVED, and CLOSED.</li>
+                <li>Structured the application with controllers, services, repositories, Thymeleaf templates, and JPA entities for a clean and scalable architecture.</li>
+              </ul>
 
-<article class="card">
-  <div class="card-header">
-    <div class="card-title">HelpDesk Ticketing App</div>
-    <div class="card-meta">Spring Boot · Thymeleaf · Spring Security</div>
-  </div>
-  <div class="card-subtitle">
-    Full-stack support ticket web application where users can register, submit help requests, track ticket progress, and manage workflows through role-based access and status updates.
-  </div>
-  <div class="card-body">
-    <ul class="bullet-list">
-      <li>Built user registration and login flows with Spring Security, authentication, and role-based access for requesters, agents, and admins.</li>
-      <li>Implemented ticket creation, ticket detail pages, and dashboard views so users can submit issues and track their requests in one place.</li>
-      <li>Added ticket workflow management with status updates such as NEW, OPEN, PENDING_CUSTOMER, RESOLVED, and CLOSED.</li>
-      <li>Structured the application with controllers, services, repositories, Thymeleaf templates, and JPA entities for a clean and scalable architecture.</li>
-    </ul>
-    <div class="tag-row">
-      <span class="tag">Java 17</span>
-      <span class="tag">Spring Boot</span>
-      <span class="tag">Thymeleaf</span>
-      <span class="tag">Spring Security</span>
-      <span class="tag">JPA / Hibernate</span>
-      <span class="tag">H2 / Flyway</span>
-    </div>
-    <a href="http://167.172.246.242:8082/" class="pill-button">View project →</a>
-    <br>
-    <a href="https://github.com/victorpena210/spring-help-desk" class="pill-button">View Source Code→</a>
+              <div class="tag-row">
+                <span class="tag">Java 17</span>
+                <span class="tag">Spring Boot</span>
+                <span class="tag">Thymeleaf</span>
+                <span class="tag">Spring Security</span>
+                <span class="tag">JPA / Hibernate</span>
+                <span class="tag">H2 / Flyway</span>
+              </div>
 
-  </div>
-</article>
+              <div class="card-links">
+                <a href="http://167.172.246.242:8082/" class="pill-button" target="_blank" rel="noopener noreferrer">View Project →</a>
+                <a href="https://github.com/victorpena210/spring-help-desk" class="pill-button" target="_blank" rel="noopener noreferrer">View Source Code →</a>
+              </div>
+            </div>
+          </article>
 
           <article class="card">
             <div class="card-header">
-              <div class="card-title">E-commerce Store(Java)</div>
+              <div class="card-title">E-commerce Store (Java)</div>
               <div class="card-meta">Java · Tomcat · MySQL</div>
-
             </div>
             <div class="card-subtitle">
-              Full-stack Java web app with authentication, product catalog, and session-based cart, built using MVC patterns and a relational database.             </div>
+              Full-stack Java web app with authentication, product catalog, and session-based cart, built using MVC patterns and a relational database.
+            </div>
             <div class="card-body">
               <ul class="bullet-list">
                 <li>Implemented user registration/login/logout with secure session handling and server-side validation.</li>
@@ -538,52 +502,50 @@
                 <li>Designed a session-based cart that prevents duplicate line items, updates quantities, and calculates totals consistently.</li>
                 <li>Structured the app with clear separation between controllers (Servlets), services (business logic), and DAOs (data access).</li>
               </ul>
+
               <div class="tag-row">
                 <span class="tag">Java 17</span>
                 <span class="tag">Jakarta Servlets</span>
                 <span class="tag">JSP & JSTL</span>
                 <span class="tag">MySQL</span>
               </div>
-                <a href="http://167.172.246.242:8080/" class="pill-button">View project →</a>
-                <br>
-                <a href="https://github.com/victorpena210/eCommerceWebApp" class="pill-button">View Source Code →</a>
 
+              <div class="card-links">
+                <a href="http://167.172.246.242:8080/" class="pill-button" target="_blank" rel="noopener noreferrer">View Project →</a>
+                <a href="https://github.com/victorpena210/eCommerceWebApp" class="pill-button" target="_blank" rel="noopener noreferrer">View Source Code →</a>
+              </div>
             </div>
           </article>
 
-          <!-- ChatApp Project -->
-<article class="card">
-  <div class="card-header">
-    <div class="card-title">ChatApp (Spring Boot)</div>
-    <div class="card-meta">Java · Spring Boot · REST</div>
-    <div class="card-meta">LIVE DEMO</div>
-  </div>
+          <article class="card">
+            <div class="card-header">
+              <div class="card-title">ChatApp (Spring Boot)</div>
+              <div class="card-meta">Java · Spring Boot · REST</div>
+            </div>
+            <div class="card-subtitle">
+              Real-time style chat application backend built with Spring Boot, demonstrating API design, controllers, and JSON messaging.
+            </div>
+            <div class="card-body">
+              <ul class="bullet-list">
+                <li>Built a Spring Boot application with REST endpoints for sending and retrieving chat messages.</li>
+                <li>Organized the codebase with controllers and service logic for clean separation of concerns.</li>
+                <li>Packaged as a runnable JAR and deployed on a DigitalOcean droplet for a live demo.</li>
+              </ul>
 
-  <div class="card-subtitle">
-    Real-time style chat application backend built with Spring Boot, demonstrating API design, controllers, and JSON messaging.
-  </div>
+              <div class="tag-row">
+                <span class="tag">Java</span>
+                <span class="tag">Spring Boot</span>
+                <span class="tag">Maven</span>
+                <span class="tag">REST API</span>
+              </div>
 
-  <div class="card-body">
-    <ul class="bullet-list">
-      <li>Built a Spring Boot application with REST endpoints for sending and retrieving chat messages.</li>
-      <li>Organized the codebase with controllers and service logic for clean separation of concerns.</li>
-      <li>Packaged as a runnable JAR and deployed on a DigitalOcean droplet for a live demo.</li>
-    </ul>
+              <div class="card-links">
+                <a href="http://167.172.246.242:8081/" class="pill-button" target="_blank" rel="noopener noreferrer">View Project →</a>
+                <a href="https://github.com/victorpena210/chatApp" class="pill-button" target="_blank" rel="noopener noreferrer">View Source Code →</a>
+              </div>
+            </div>
+          </article>
 
-    <div class="tag-row">
-      <span class="tag">Java</span>
-      <span class="tag">Spring Boot</span>
-      <span class="tag">Maven</span>
-      <span class="tag">REST API</span>
-    </div>
-
-    <a href="http://167.172.246.242:8081/" class="pill-button">View Project →</a>
-    <br>
-    <a href="https://github.com/victorpena210/chatApp" class="pill-button">View Source Code →</a>
-  </div>
-</article>
-
-          <!-- Project 2 -->
           <article class="card">
             <div class="card-header">
               <div class="card-title">Weather + Mapbox Explorer</div>
@@ -598,22 +560,21 @@
                 <li>Handled API keys via environment variables and separated configuration from UI logic.</li>
                 <li>Designed a simple, responsive layout that works cleanly on desktop and mobile.</li>
               </ul>
+
               <div class="tag-row">
                 <span class="tag">OpenWeather API</span>
                 <span class="tag">Mapbox GL JS</span>
                 <span class="tag">HTML · CSS · JS</span>
               </div>
-            </div>
-                    <div class="card-footer">
-          <a href="projects/weatherMap/index.html" class="pill-button">View Project →</a>
-          <br>
-          <a href="https://github.com/victorpena210/WeatherMap" class="pill-button">View Project →</a>
 
-        </div>
+              <div class="card-links">
+                <a href="projects/weatherMap/index.html" class="pill-button">View Project →</a>
+                <a href="https://github.com/victorpena210/WeatherMap" class="pill-button" target="_blank" rel="noopener noreferrer">View Source Code →</a>
+              </div>
+            </div>
           </article>
 
-          <!-- Project 3 (optional / placeholder) -->
-          <article class="card" href="">
+          <article class="card">
             <div class="card-header">
               <div class="card-title">Coffee Store</div>
               <div class="card-meta">Node · Express</div>
@@ -624,123 +585,121 @@
             <div class="card-body">
               <ul class="bullet-list">
                 <li>Built a semantic HTML layout with sections for hero, menu, and contact.</li>
-              <li>Used vanilla JavaScript for basic interactivity like navigation behavior and UI effects.</li>
+                <li>Used vanilla JavaScript for basic interactivity like navigation behavior and UI effects.</li>
               </ul>
+
               <div class="tag-row">
-                <span class="tag">Html</span>
+                <span class="tag">HTML</span>
                 <span class="tag">JavaScript</span>
               </div>
-            </div>
-            <div class="card-footer">
-              <a href="projects/coffeeProject/main.html" class="pill-button">View Project →</a>
-              <br>
-              <a href="https://github.com/victorpena210/Coffee-Project" class="pill-button">View Source Code →</a>
 
+              <div class="card-links">
+                <a href="projects/coffeeProject/main.html" class="pill-button">View Project →</a>
+                <a href="https://github.com/victorpena210/Coffee-Project" class="pill-button" target="_blank" rel="noopener noreferrer">View Source Code →</a>
+              </div>
             </div>
           </article>
-
         </div>
-
       </section>
 
-      <!-- ====== SKILLS ====== -->
-  <section id="skills">
-  <div class="section-header">
-    <h2 class="section-title">Skills</h2>
-    <p class="section-subtitle">Java backend + web application development</p>
-  </div>
+      <section id="skills">
+        <div class="section-header">
+          <h2 class="section-title">Skills</h2>
+          <p class="section-subtitle">Java backend + web application development</p>
+        </div>
 
-  <div class="skills-grid">
-    <div>
-      <div class="skills-group-title">Languages</div>
-      <div class="skills-chips">
-        <span class="skills-chip">Java</span>
-        <span class="skills-chip">JavaScript</span>
-        <span class="skills-chip">SQL</span>
-        <span class="skills-chip">HTML</span>
-        <span class="skills-chip">CSS</span>
-      </div>
-    </div>
+        <div class="skills-grid">
+          <div>
+            <div class="skills-group-title">Languages</div>
+            <div class="skills-chips">
+              <span class="skills-chip">Java</span>
+              <span class="skills-chip">JavaScript</span>
+              <span class="skills-chip">SQL</span>
+              <span class="skills-chip">HTML</span>
+              <span class="skills-chip">CSS</span>
+            </div>
+          </div>
 
-    <div>
-      <div class="skills-group-title">Backend</div>
-      <div class="skills-chips">
-        <span class="skills-chip">Spring Boot</span>
-        <span class="skills-chip">Jakarta Servlets</span>
-        <span class="skills-chip">JSP</span>
-        <span class="skills-chip">Spring MVC</span>
-        <span class="skills-chip">Spring Security</span>
-        <span class="skills-chip">REST APIs</span>
-      </div>
-    </div>
+          <div>
+            <div class="skills-group-title">Backend</div>
+            <div class="skills-chips">
+              <span class="skills-chip">Spring Boot</span>
+              <span class="skills-chip">Jakarta Servlets</span>
+              <span class="skills-chip">JSP</span>
+              <span class="skills-chip">Spring MVC</span>
+              <span class="skills-chip">Spring Security</span>
+              <span class="skills-chip">REST APIs</span>
+            </div>
+          </div>
 
-    <div>
-      <div class="skills-group-title">Database & Persistence</div>
-      <div class="skills-chips">
-        <span class="skills-chip">MySQL</span>
-        <span class="skills-chip">H2</span>
-        <span class="skills-chip">JPA / Hibernate</span>
-        <span class="skills-chip">JDBC</span>
-        <span class="skills-chip">Flyway</span>
-      </div>
-    </div>
+          <div>
+            <div class="skills-group-title">Database & Persistence</div>
+            <div class="skills-chips">
+              <span class="skills-chip">MySQL</span>
+              <span class="skills-chip">H2</span>
+              <span class="skills-chip">JPA / Hibernate</span>
+              <span class="skills-chip">JDBC</span>
+              <span class="skills-chip">Flyway</span>
+            </div>
+          </div>
 
-    <div>
-      <div class="skills-group-title">Tools & Platforms</div>
-      <div class="skills-chips">
-        <span class="skills-chip">Git</span>
-        <span class="skills-chip">GitHub</span>
-        <span class="skills-chip">Maven</span>
-        <span class="skills-chip">Apache Tomcat</span>
-        <span class="skills-chip">Eclipse</span>
-        <span class="skills-chip">Docker</span>
-      </div>
-    </div>
+          <div>
+            <div class="skills-group-title">Tools & Platforms</div>
+            <div class="skills-chips">
+              <span class="skills-chip">Git</span>
+              <span class="skills-chip">GitHub</span>
+              <span class="skills-chip">Maven</span>
+              <span class="skills-chip">Apache Tomcat</span>
+              <span class="skills-chip">Eclipse</span>
+              <span class="skills-chip">Docker</span>
+            </div>
+          </div>
 
-    <div>
-      <div class="skills-group-title">Frontend & Templating</div>
-      <div class="skills-chips">
-        <span class="skills-chip">Thymeleaf</span>
-        <span class="skills-chip">Responsive Design</span>
-        <span class="skills-chip">DOM Manipulation</span>
-        <span class="skills-chip">Form Handling</span>
-      </div>
-    </div>
+          <div>
+            <div class="skills-group-title">Frontend & Templating</div>
+            <div class="skills-chips">
+              <span class="skills-chip">Thymeleaf</span>
+              <span class="skills-chip">Responsive Design</span>
+              <span class="skills-chip">DOM Manipulation</span>
+              <span class="skills-chip">Form Handling</span>
+            </div>
+          </div>
 
-    <div>
-      <div class="skills-group-title">Concepts</div>
-      <div class="skills-chips">
-        <span class="skills-chip">MVC Architecture</span>
-        <span class="skills-chip">Authentication & Authorization</span>
-        <span class="skills-chip">Session Management</span>
-        <span class="skills-chip">CRUD Operations</span>
-        <span class="skills-chip">Role-Based Access Control</span>
-        <span class="skills-chip">Debugging</span>
-      </div>
-    </div>
-  </div>
-</section>
-      <!-- ====== CONTACT ====== -->
-<section id="contact">
-  <div class="section-header">
-    <h2 class="section-title">Contact</h2>
-    <p class="section-subtitle">Let’s connect</p>
-  </div>
+          <div>
+            <div class="skills-group-title">Concepts</div>
+            <div class="skills-chips">
+              <span class="skills-chip">MVC Architecture</span>
+              <span class="skills-chip">Authentication & Authorization</span>
+              <span class="skills-chip">Session Management</span>
+              <span class="skills-chip">CRUD Operations</span>
+              <span class="skills-chip">Role-Based Access Control</span>
+              <span class="skills-chip">Debugging</span>
+            </div>
+          </div>
+        </div>
+      </section>
 
-  <div class="contact-content">
-<p>
-  I’m seeking a junior software development role where I can contribute to real products,
-  strengthen my backend skills, and continue growing as a Java developer. I’m especially interested
-  in opportunities involving Spring Boot, web applications, and database-driven systems.
-</p>
+      <section id="contact">
+        <div class="section-header">
+          <h2 class="section-title">Contact</h2>
+          <p class="section-subtitle">Let’s connect</p>
+        </div>
 
-    <div class="contact-links">
-      <a href="mailto:your@email.com">your@email.com</a>
-      <a href="https://github.com/victorpena210" target="_blank" rel="noopener noreferrer">GitHub</a>
-      <a href="https://www.linkedin.com/in/your-linkedin/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-    </div>
-  </div>
-</section>
+        <div class="contact-content">
+          <p>
+            I’m seeking a junior software development role where I can contribute to real products,
+            strengthen my backend skills, and continue growing as a Java developer. I’m especially interested
+            in opportunities involving Spring Boot, web applications, and database-driven systems.
+          </p>
+
+          <div class="contact-links">
+            <a href="mailto:13victor.pena@gmail.com">13victor.pena@gmail.com</a>
+            <a href="https://github.com/victorpena210" target="_blank" rel="noopener noreferrer">GitHub</a>
+            <!-- Replace this with your real LinkedIn URL when ready -->
+            <!-- <a href="https://www.linkedin.com/in/your-linkedin/" target="_blank" rel="noopener noreferrer">LinkedIn</a> -->
+          </div>
+        </div>
+      </section>
     </main>
 
     <footer>
@@ -749,17 +708,7 @@
   </div>
 
   <script>
-    // Auto-update footer year
     document.getElementById("year").textContent = new Date().getFullYear();
   </script>
-  <script src="https://unpkg.com/github-calendar@latest/dist/github-calendar.min.js"></script>
-  <script>
-  // Replace with your GitHub username
-  GitHubCalendar(".calendar", "victorpena210", {
-    responsive: true
-  });
-</script>
-
-
 </body>
 </html>
