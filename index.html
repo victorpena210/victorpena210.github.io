@@ -316,6 +316,45 @@
       margin-top: 0.8rem;
     }
 
+    /* ===== CURRENT PROJECT ===== */
+.current-project-card {
+  position: relative;
+  overflow: hidden;
+  border-color: rgba(56, 189, 248, 0.55);
+  box-shadow:
+    0 20px 45px rgba(2, 6, 23, 0.55),
+    0 0 30px rgba(56, 189, 248, 0.07);
+}
+
+.current-project-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: linear-gradient(
+    90deg,
+    var(--accent),
+    rgba(56, 189, 248, 0.15)
+  );
+}
+
+.project-status {
+  display: inline-flex;
+  align-items: center;
+  margin-bottom: 0.45rem;
+  padding: 0.2rem 0.6rem;
+  border: 1px solid rgba(56, 189, 248, 0.55);
+  border-radius: 999px;
+  background: var(--accent-soft);
+  color: var(--accent);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
     /* ===== SKILLS ===== */
     .skills-grid {
       display: grid;
@@ -421,6 +460,7 @@
         <div class="nav-brand">Victor Peña • Resume</div>
         <div class="nav-links">
           <a href="#experience">Experience</a>
+          <a href="#current-project">Current Project</a>
           <a href="#projects">Projects</a>
           <a href="#skills">Skills</a>
           <a href="#contact">Contact</a>
@@ -518,6 +558,87 @@
           </article>
         </div>
       </section>
+
+      <section id="current-project">
+  <div class="section-header">
+    <h2 class="section-title">Current Project</h2>
+    <p class="section-subtitle">What I’m building now</p>
+  </div>
+
+  <article class="card current-project-card">
+    <div class="card-header">
+      <div>
+        <div class="project-status">In Development</div>
+        <div class="card-title">ShuttleFlow</div>
+      </div>
+
+      <div class="card-meta">
+        Java 17 · Spring Boot · Thymeleaf
+      </div>
+    </div>
+
+    <div class="card-subtitle">
+      Employee shuttle demand and pickup-planning dashboard
+    </div>
+
+    <div class="card-body">
+      <p>
+        ShuttleFlow is an independent Java scheduling application inspired by
+        a transportation-planning challenge I encountered in my current
+        position. The application analyzes employee shift schedules and groups
+        team members by their scheduled end times into 15-minute pickup
+        intervals.
+      </p>
+
+      <p>
+        This allows shuttle drivers to see how many employees may need
+        transportation during each interval, identify high-demand pickup
+        periods, and plan daily shuttle operations more efficiently.
+      </p>
+
+      <ul class="bullet-list">
+        <li>
+          Reads uploaded CSV schedule data and filters employee shifts by date.
+        </li>
+        <li>
+          Groups scheduled shift-end times into automatic 15-minute pickup windows.
+        </li>
+        <li>
+          Separates employees by pickup location for more accurate planning.
+        </li>
+        <li>
+          Calculates LOW, MEDIUM, and HIGH priority levels based on the number
+          of employees in each pickup window.
+        </li>
+        <li>
+          Displays the results in a responsive daily shuttle-planning dashboard.
+        </li>
+      </ul>
+
+      <div class="tag-row">
+        <span class="tag">Java 17</span>
+        <span class="tag">Spring Boot</span>
+        <span class="tag">Spring MVC</span>
+        <span class="tag">Thymeleaf</span>
+        <span class="tag">Apache Commons CSV</span>
+        <span class="tag">Maven</span>
+        <span class="tag">HTML5</span>
+        <span class="tag">CSS3</span>
+      </div>
+
+      <div class="card-links">
+        <a
+          href="https://github.com/victorpena210/shuttle-flow"
+          class="pill-button"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          View Source Code →
+        </a>
+      </div>
+    </div>
+  </article>
+</section>
 
       <section id="projects">
         <div class="section-header">
